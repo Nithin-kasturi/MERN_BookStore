@@ -1,10 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const app = express()
+const User = require('./model/user');
+const { createToken, validateToken } = require('./JWT');
+app.use(cors());
 app.use(cors(
     {
         origin: ["https://deploy-mern-frontend.vercel.app"],
@@ -12,12 +15,12 @@ app.use(cors(
         credentials: true
     }
 ));
-app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
-app.get('/',(req,res)=>{
-    res.send("Hello");
-})
+app.listen(process.env.PORT || 8000, () => {
+    console.log('Server connected');
+});
+
 // Replace the following connection string with your MongoDB Atlas connection string
 const mongoDBURI = 'mongodb+srv://nithin:test123@cluster0.xbq5cse.mongodb.net/test?retryWrites=true&w=majority';
 
@@ -29,6 +32,7 @@ mongoose.connect(mongoDBURI, {
         console.log('Connected to MongoDB Atlas');
     })
     .catch(err => console.log(err));
+
 app.post('/addUser',async (req,res)=>{
     const {email,password}=req.body;
     console.log(email,password);
@@ -110,7 +114,4 @@ app.get('/getComments',async (req,res)=>{
     const bookId=req.query.id;
     const response=await User.find({'comments.id':bookId});
     res.send(response);
-});
-app.listen(process.env.PORT || 8000, () => {
-    console.log('Server connected');
-});
+})
