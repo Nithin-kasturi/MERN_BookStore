@@ -8,8 +8,7 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
-
+// app.use(cors());
 const User = require('./model/user');
 const { createToken, validateToken } = require('./JWT');
 app.use(cors(
