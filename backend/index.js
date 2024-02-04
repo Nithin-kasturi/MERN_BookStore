@@ -7,10 +7,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const User = require('./model/user');
 const { createToken, validateToken } = require('./JWT');
-app.use(cors());
 app.use(cors(
     {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
+        origin: ["https://mern-book-store-xvzu.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
     }
