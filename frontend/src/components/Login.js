@@ -13,7 +13,7 @@ export default function Login() {
     });
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        axios.post('http://localhost:8000/checkUser',userDetails).
+        axios.post('https://mern-book-store-livid.vercel.app/checkUser',userDetails).
         then((res)=>{setResponse(res)});
         console.log(response);
       }
