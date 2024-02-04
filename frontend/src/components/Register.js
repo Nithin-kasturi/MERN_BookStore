@@ -12,7 +12,7 @@ export default function Register() {
     });
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    axios.post('https://mern-book-store-three.vercel.app/addUser',userDetails).
+    axios.post('https://mern-book-store-wine.vercel.app/addUser',userDetails).
     then((res)=>{setResponse(res)});
     console.log(response);
   }
