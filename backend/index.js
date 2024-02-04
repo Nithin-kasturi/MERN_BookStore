@@ -4,10 +4,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-// Middleware
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(cookieParser());
 const app = express()
 app.use(cors(
     {
@@ -16,6 +12,9 @@ app.use(cors(
         credentials: true
     }
 ));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(express.json());
 app.get('/',(req,res)=>{
     res.send("Hello");
 })
