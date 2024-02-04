@@ -16,7 +16,7 @@ export default function Bookdetails() {
     const id = getId();
     console.log(id);
     axios
-      .get('http://localhost:8000/getComments', { params: { id: id } })
+      .get('https://mern-book-store-livid.vercel.app/getComments', { params: { id: id } })
       .then((res) => {
         setFetchedComment(res.data);
       })
@@ -33,14 +33,14 @@ export default function Bookdetails() {
 
   const handleClick = () => {
     if (comment !== '') {
-      axios.post('http://localhost:8000/insertComment', { commentAndUser });
+      axios.post('https://mern-book-store-livid.vercel.app/insertComment', { commentAndUser });
       window.location.reload();
     }
   };
 const handleReply=(commentator)=>{
   if(reply!==""){
     const replyAndUser={reply,user,commentator,id};
-    axios.post('http://localhost:8000/insertReply', { replyAndUser });
+    axios.post('https://mern-book-store-livid.vercel.app/insertReply', { replyAndUser });
       window.location.reload();
   }
 }
