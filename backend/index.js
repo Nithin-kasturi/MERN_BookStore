@@ -12,7 +12,13 @@ app.use(cors());
 
 const User = require('./model/user');
 const { createToken, validateToken } = require('./JWT');
-
+app.use(cors(
+    {
+        origin: ["https://deploy-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 app.listen(process.env.PORT || 8000, () => {
     console.log('Server connected');
 });
