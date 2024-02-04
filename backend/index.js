@@ -14,7 +14,7 @@ const User = require('./model/user');
 const { createToken, validateToken } = require('./JWT');
 app.use(cors(
     {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
+        origin: ["https://mern-book-store-yo6f.vercel.app/"],
         methods: ["POST", "GET"],
         credentials: true
     }
