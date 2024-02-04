@@ -5,12 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
-app.use(cookieParser());
-app.use(express.json());
-// app.use(cors());
-const User = require('./model/user');
-const { createToken, validateToken } = require('./JWT');
 app.use(cors(
     {
         origin: ["https://mern-book-store-6b1o.vercel.app"],
@@ -18,9 +12,13 @@ app.use(cors(
         credentials: true
     }
 ));
-app.listen(process.env.PORT || 8000, () => {
-    console.log('Server connected');
-});
+app.use(cookieParser());
+app.use(express.json());
+// app.use(cors());
+const User = require('./model/user');
+const { createToken, validateToken } = require('./JWT');
+
+
 app.get('/',(req,res)=>{
     res.send("Hello");
 })
@@ -116,4 +114,7 @@ app.get('/getComments',async (req,res)=>{
     const bookId=req.query.id;
     const response=await User.find({'comments.id':bookId});
     res.send(response);
-})
+});
+app.listen(process.env.PORT || 8000, () => {
+    console.log('Server connected');
+});
