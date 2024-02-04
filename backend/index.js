@@ -26,7 +26,7 @@ app.get('/',(req,res)=>{
     res.send("Hello");
 })
 // Replace the following connection string with your MongoDB Atlas connection string
-const mongoDBURI = 'mongodb+srv://nithin:test123@cluster0.xbq5cse.mongodb.net/?retryWrites=true&w=majority';
+const mongoDBURI = 'mongodb+srv://nithin:test123@cluster0.xbq5cse.mongodb.net/test?retryWrites=true&w=majority';
 
 mongoose.connect(mongoDBURI, {
     useNewUrlParser: true,
