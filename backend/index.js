@@ -1,21 +1,21 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const User = require('./model/user');
-const { createToken, validateToken } = require('./JWT');
+
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors({
   origin: 'https://mern-book-store-6b1o.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
-app.use(cookieParser());
-app.use(express.json());
-// app.use(cors());
-
 
 
 app.get('/',(req,res)=>{
