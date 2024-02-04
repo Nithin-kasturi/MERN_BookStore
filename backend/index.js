@@ -1,21 +1,33 @@
-const express=require('express');
-const bcrypt=require('bcrypt');
-const app=express();
-const cors=require('cors');
-const mongoose=require('mongoose');
-const bodyParser=require('body-parser');
-const cookieParser=require('cookie-parser');
+const express = require('express');
+const bcrypt = require('bcrypt');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
-const User=require('./model/user');
-const {createToken,validateToken}=require('./JWT');
-app.listen(process.env.PORT || 8000,()=>{
-    console.log("Server connected");
+
+const User = require('./model/user');
+const { createToken, validateToken } = require('./JWT');
+
+app.listen(process.env.PORT || 8000, () => {
+    console.log('Server connected');
 });
-mongoose.connect('mongodb://localhost:27017/BookStore',{useNewUrlParser:true,
-    useUnifiedTopology:true
-}).then(()=>{console.log("Connected to database")}).catch(err=>console.log(err));
+
+// Replace the following connection string with your MongoDB Atlas connection string
+const mongoDBURI = 'mongodb+srv://nithin:test123@cluster0.xbq5cse.mongodb.net/?retryWrites=true&w=majority';
+
+mongoose.connect(mongoDBURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
+    })
+    .catch(err => console.log(err));
 app.post('/addUser',async (req,res)=>{
     const {email,password}=req.body;
     console.log(email,password);
